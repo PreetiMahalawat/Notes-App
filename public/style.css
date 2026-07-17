@@ -1,0 +1,1631 @@
+/* ==========================================
+   SMART NOTES APP
+   Designed by ChatGPT for Preeti
+==========================================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+:root{
+
+    --primary:#4F46E5;
+    --secondary:#7C3AED;
+    --blue:#2563EB;
+    --red:#EF4444;
+    --orange:#F59E0B;
+    --green:#10B981;
+
+    --glass:rgba(255,255,255,.08);
+
+    --white:#ffffff;
+
+}
+
+body{
+
+    min-height:100vh;
+
+    background:linear-gradient(
+    -45deg,
+    #0F172A,
+    #1E3A8A,
+    #312E81,
+    #7C3AED);
+
+    background-size:400% 400%;
+
+    animation:gradientBG 15s ease infinite;
+
+    overflow-x:hidden;
+
+}
+
+@keyframes gradientBG{
+
+0%{
+
+background-position:0% 50%;
+
+}
+
+50%{
+
+background-position:100% 50%;
+
+}
+
+100%{
+
+background-position:0% 50%;
+
+}
+
+}
+
+.background{
+
+position:fixed;
+
+width:100%;
+
+height:100%;
+
+z-index:-1;
+
+backdrop-filter:blur(80px);
+
+}
+
+.container{
+
+width:92%;
+
+max-width:1200px;
+
+margin:40px auto;
+
+}
+
+/*=========================
+HEADER
+=========================*/
+
+header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:25px 35px;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(25px);
+
+border-radius:25px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.25);
+
+margin-bottom:30px;
+
+}
+
+.logo{
+
+display:flex;
+
+align-items:center;
+
+gap:18px;
+
+}
+
+.logo i{
+
+font-size:45px;
+
+color:#FFD54F;
+
+}
+
+.logo h1{
+
+font-size:34px;
+
+color:white;
+
+font-weight:700;
+
+}
+
+.logo p{
+
+color:#ddd;
+
+margin-top:3px;
+
+}
+
+#themeBtn{
+
+width:55px;
+
+height:55px;
+
+border:none;
+
+border-radius:50%;
+
+background:linear-gradient(
+135deg,
+#4F46E5,
+#7C3AED);
+
+color:white;
+
+font-size:22px;
+
+cursor:pointer;
+
+transition:.4s;
+
+}
+
+#themeBtn:hover{
+
+transform:rotate(25deg);
+
+box-shadow:0 10px 25px rgba(124,58,237,.5);
+
+}
+/*=========================
+SEARCH BAR
+=========================*/
+
+.search-section{
+
+margin-bottom:30px;
+
+}
+
+.search-box{
+
+display:flex;
+
+align-items:center;
+
+background:rgba(255,255,255,.08);
+
+padding:18px 22px;
+
+border-radius:18px;
+
+backdrop-filter:blur(25px);
+
+box-shadow:0 10px 25px rgba(0,0,0,.2);
+
+}
+
+.search-box i{
+
+color:white;
+
+font-size:20px;
+
+margin-right:15px;
+
+}
+
+.search-box input{
+
+flex:1;
+
+background:none;
+
+border:none;
+
+outline:none;
+
+font-size:17px;
+
+color:white;
+
+}
+
+.search-box input::placeholder{
+
+color:#ddd;
+
+}
+/*=========================
+DASHBOARD
+=========================*/
+
+.dashboard{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+gap:20px;
+
+margin-bottom:35px;
+
+}
+
+.card{
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(25px);
+
+border-radius:22px;
+
+padding:28px;
+
+text-align:center;
+
+transition:.4s;
+
+box-shadow:0 10px 25px rgba(0,0,0,.2);
+
+}
+
+.card:hover{
+
+transform:translateY(-8px);
+
+}
+
+.card i{
+
+font-size:38px;
+
+color:#FFD54F;
+
+margin-bottom:15px;
+
+}
+
+.card h2{
+
+font-size:34px;
+
+color:white;
+
+margin-bottom:8px;
+
+}
+
+.card span{
+
+color:#ddd;
+
+font-size:15px;
+
+}
+
+/* ==========================================
+   PART 2
+   FORM + NOTES + BUTTONS
+========================================== */
+
+
+/* =========================
+   CREATE NOTE FORM
+========================= */
+
+.form-section {
+    position: relative;
+
+    padding: 35px;
+
+    margin-bottom: 40px;
+
+    background: rgba(255, 255, 255, 0.1);
+
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+
+    border: 1px solid rgba(255, 255, 255, 0.14);
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+    overflow: hidden;
+}
+
+
+/* Decorative Glow */
+
+.form-section::before {
+    content: "";
+
+    position: absolute;
+
+    width: 230px;
+    height: 230px;
+
+    top: -140px;
+    right: -100px;
+
+    border-radius: 50%;
+
+    background: rgba(99, 102, 241, 0.4);
+
+    filter: blur(35px);
+
+    pointer-events: none;
+}
+
+
+.form-section h2 {
+    position: relative;
+
+    color: white;
+
+    font-size: 27px;
+
+    font-weight: 700;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================
+   FORM INPUTS
+========================= */
+
+.form-section input,
+.form-section textarea {
+    position: relative;
+
+    width: 100%;
+
+    display: block;
+
+    padding: 16px 18px;
+
+    margin-bottom: 18px;
+
+    color: white;
+
+    font-size: 16px;
+
+    background: rgba(15, 23, 42, 0.35);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    border-radius: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+.form-section textarea {
+    min-height: 150px;
+
+    resize: vertical;
+
+    line-height: 1.7;
+}
+
+
+.form-section input::placeholder,
+.form-section textarea::placeholder {
+    color: rgba(255, 255, 255, 0.65);
+}
+
+
+.form-section input:focus,
+.form-section textarea:focus {
+    border-color: #818CF8;
+
+    background: rgba(15, 23, 42, 0.55);
+
+    box-shadow:
+        0 0 0 4px rgba(99, 102, 241, 0.16),
+        0 8px 25px rgba(0, 0, 0, 0.12);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+   ADD / UPDATE BUTTON
+========================= */
+
+#addBtn {
+    position: relative;
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 16px 24px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.2px;
+
+    background: linear-gradient(
+        135deg,
+        #2563EB,
+        #4F46E5,
+        #7C3AED
+    );
+
+    background-size: 200% 200%;
+
+    box-shadow:
+        0 12px 30px rgba(79, 70, 229, 0.35);
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background-position 0.4s ease;
+}
+
+
+#addBtn:hover {
+    transform: translateY(-3px);
+
+    background-position: 100% 50%;
+
+    box-shadow:
+        0 18px 40px rgba(79, 70, 229, 0.5);
+}
+
+
+#addBtn:active {
+    transform: translateY(0) scale(0.99);
+}
+
+
+#addBtn i {
+    font-size: 17px;
+}
+
+
+/* =========================
+   NOTES SECTION
+========================= */
+
+.notes-section {
+    margin-top: 25px;
+
+    margin-bottom: 30px;
+}
+
+
+.section-title {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 22px;
+}
+
+
+.section-title h2,
+.notes-heading {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    color: white;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.2px;
+
+    text-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================
+   NOTES GRID
+========================= */
+
+#notesContainer {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(300px, 1fr));
+
+    gap: 24px;
+
+    align-items: stretch;
+}
+
+
+/* =========================
+   NOTE CARD
+========================= */
+
+.note-card {
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    min-height: 265px;
+
+    padding: 26px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.96),
+            rgba(238, 242, 255, 0.9)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.65);
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 18px 45px rgba(2, 6, 23, 0.2);
+
+    overflow: hidden;
+
+    animation: noteAppear 0.45s ease both;
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+}
+
+
+/* Premium Top Accent */
+
+.note-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 6px;
+
+    background: linear-gradient(
+        90deg,
+        #2563EB,
+        #6366F1,
+        #A855F7
+    );
+}
+
+
+/* Soft Card Glow */
+
+.note-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    top: -90px;
+    right: -80px;
+
+    border-radius: 50%;
+
+    background: rgba(99, 102, 241, 0.13);
+
+    filter: blur(5px);
+
+    pointer-events: none;
+}
+
+
+.note-card:hover {
+    transform: translateY(-8px);
+
+    border-color: rgba(99, 102, 241, 0.25);
+
+    box-shadow:
+        0 26px 65px rgba(2, 6, 23, 0.28);
+}
+
+
+/* =========================
+   NOTE TITLE
+========================= */
+
+/* Your current script.js creates h3 */
+
+.note-card h3 {
+    position: relative;
+
+    z-index: 1;
+
+    color: #1E1B4B;
+
+    font-size: 24px;
+
+    font-weight: 700;
+
+    line-height: 1.35;
+
+    margin-bottom: 12px;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* Also supports h2 if used later */
+
+.note-card h2 {
+    position: relative;
+
+    z-index: 1;
+
+    color: #1E1B4B;
+
+    font-size: 24px;
+
+    font-weight: 700;
+
+    line-height: 1.35;
+
+    margin-bottom: 12px;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================
+   NOTE DESCRIPTION
+========================= */
+
+.note-card p {
+    position: relative;
+
+    z-index: 1;
+
+    color: #475569;
+
+    font-size: 15px;
+
+    line-height: 1.75;
+
+    margin-bottom: 20px;
+
+    flex-grow: 1;
+
+    white-space: pre-wrap;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================
+   NOTE DATE
+========================= */
+
+.note-card small {
+    position: relative;
+
+    z-index: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    width: fit-content;
+
+    padding: 8px 12px;
+
+    margin-bottom: 20px;
+
+    color: #64748B;
+
+    font-size: 12px;
+
+    font-weight: 500;
+
+    background: #EEF2FF;
+
+    border: 1px solid #E0E7FF;
+
+    border-radius: 999px;
+}
+
+
+.note-card small i {
+    color: #6366F1;
+}
+
+
+/* =========================
+   EDIT / DELETE BUTTON AREA
+========================= */
+
+/* Your current script.js uses .buttons */
+
+.buttons {
+    position: relative;
+
+    z-index: 1;
+
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: auto;
+}
+
+
+/* Support older .btn-group class too */
+
+.btn-group {
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: auto;
+}
+
+
+/* =========================
+   EDIT BUTTON
+========================= */
+
+.editBtn,
+.edit-btn {
+    flex: 1;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 11px 18px;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: linear-gradient(
+        135deg,
+        #F59E0B,
+        #F97316
+    );
+
+    box-shadow:
+        0 8px 20px rgba(245, 158, 11, 0.25);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        filter 0.3s ease;
+}
+
+
+.editBtn:hover,
+.edit-btn:hover {
+    transform: translateY(-3px);
+
+    filter: brightness(1.05);
+
+    box-shadow:
+        0 13px 28px rgba(245, 158, 11, 0.4);
+}
+
+
+.editBtn:active,
+.edit-btn:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================
+   DELETE BUTTON
+========================= */
+
+.deleteBtn,
+.delete-btn {
+    flex: 1;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 11px 18px;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: linear-gradient(
+        135deg,
+        #EF4444,
+        #E11D48
+    );
+
+    box-shadow:
+        0 8px 20px rgba(239, 68, 68, 0.24);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        filter 0.3s ease;
+}
+
+
+.deleteBtn:hover,
+.delete-btn:hover {
+    transform: translateY(-3px);
+
+    filter: brightness(1.05);
+
+    box-shadow:
+        0 13px 28px rgba(239, 68, 68, 0.4);
+}
+
+
+.deleteBtn:active,
+.delete-btn:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================
+   NOTE APPEAR ANIMATION
+========================= */
+
+@keyframes noteAppear {
+
+    from {
+        opacity: 0;
+
+        transform: translateY(20px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* =========================
+   EMPTY NOTES MESSAGE
+========================= */
+
+.empty {
+    grid-column: 1 / -1;
+
+    padding: 45px 25px;
+
+    color: rgba(255, 255, 255, 0.8);
+
+    font-size: 18px;
+
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border: 1px dashed rgba(255, 255, 255, 0.25);
+
+    border-radius: 22px;
+
+    backdrop-filter: blur(20px);
+}
+
+/* ==========================================
+   PART 3
+   MODAL + TOAST + LOADER + DARK MODE
+   FOOTER + RESPONSIVE DESIGN
+========================================== */
+
+
+/* =========================
+   DELETE MODAL
+========================= */
+
+.modal {
+    position: fixed;
+    inset: 0;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    background: rgba(2, 6, 23, 0.72);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    z-index: 1000;
+}
+
+
+.modal.show {
+    display: flex;
+}
+
+
+.modal-content {
+    width: 100%;
+    max-width: 430px;
+
+    padding: 38px 32px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.98),
+            rgba(238, 242, 255, 0.96)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.7);
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.4);
+
+    animation: modalAppear 0.3s ease;
+}
+
+
+.modal-icon {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    width: 78px;
+    height: 78px;
+
+    margin: 0 auto 20px;
+
+    color: white;
+
+    font-size: 32px;
+
+    background: linear-gradient(
+        135deg,
+        #EF4444,
+        #E11D48
+    );
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 15px 35px rgba(239, 68, 68, 0.35);
+}
+
+
+.modal-content h2 {
+    color: #0F172A;
+
+    font-size: 26px;
+
+    margin-bottom: 10px;
+}
+
+
+.modal-content p {
+    color: #64748B;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+
+.modal-buttons {
+    display: flex;
+
+    gap: 14px;
+
+    margin-top: 28px;
+}
+
+
+.modal-buttons button {
+    flex: 1;
+
+    padding: 13px 20px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+#cancelDelete {
+    color: #334155;
+
+    background: #E2E8F0;
+}
+
+
+#cancelDelete:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(15, 23, 42, 0.15);
+}
+
+
+#confirmDelete {
+    color: white;
+
+    background: linear-gradient(
+        135deg,
+        #EF4444,
+        #E11D48
+    );
+
+    box-shadow:
+        0 8px 20px rgba(239, 68, 68, 0.25);
+}
+
+
+#confirmDelete:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 28px rgba(239, 68, 68, 0.4);
+}
+
+
+@keyframes modalAppear {
+
+    from {
+        opacity: 0;
+
+        transform: translateY(20px) scale(0.92);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* =========================
+   TOAST NOTIFICATION
+========================= */
+
+#toast {
+    position: fixed;
+
+    top: 25px;
+    right: 25px;
+
+    max-width: 360px;
+
+    padding: 15px 22px;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    background:
+        linear-gradient(
+            135deg,
+            #059669,
+            #10B981
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.3);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateX(120%);
+
+    transition:
+        opacity 0.4s ease,
+        visibility 0.4s ease,
+        transform 0.4s ease;
+
+    z-index: 2000;
+}
+
+
+#toast.show {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateX(0);
+}
+
+
+/* =========================
+   LOADER
+========================= */
+
+#loader {
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(2, 6, 23, 0.68);
+
+    backdrop-filter: blur(8px);
+
+    z-index: 3000;
+}
+
+
+#loader.show {
+    display: flex;
+}
+
+
+.spinner {
+    width: 65px;
+    height: 65px;
+
+    border: 6px solid rgba(255, 255, 255, 0.22);
+
+    border-top-color: #818CF8;
+
+    border-right-color: #A855F7;
+
+    border-radius: 50%;
+
+    animation: spinnerRotate 0.8s linear infinite;
+}
+
+
+@keyframes spinnerRotate {
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    width: 92%;
+    max-width: 1200px;
+
+    margin: 10px auto 25px;
+
+    padding: 22px;
+
+    color: rgba(255, 255, 255, 0.8);
+
+    text-align: center;
+
+    font-size: 14px;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    border-radius: 18px;
+
+    backdrop-filter: blur(20px);
+}
+
+
+footer strong {
+    color: white;
+}
+
+
+/* =========================
+   DARK MODE
+========================= */
+
+/*
+Your current background is already dark.
+
+When the moon button is clicked, this creates
+an even deeper black/navy theme.
+*/
+
+body.dark {
+    background:
+        linear-gradient(
+            -45deg,
+            #020617,
+            #0F172A,
+            #111827,
+            #1E1B4B
+        );
+
+    background-size: 400% 400%;
+
+    animation: gradientBG 15s ease infinite;
+}
+
+
+body.dark header,
+body.dark .search-box,
+body.dark .card,
+body.dark .form-section {
+    background: rgba(2, 6, 23, 0.55);
+
+    border: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+
+body.dark .note-card {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(15, 23, 42, 0.96),
+            rgba(30, 27, 75, 0.94)
+        );
+
+    border-color: rgba(148, 163, 184, 0.15);
+}
+
+
+body.dark .note-card h3,
+body.dark .note-card h2 {
+    color: #F8FAFC;
+}
+
+
+body.dark .note-card p {
+    color: #CBD5E1;
+}
+
+
+body.dark .note-card small {
+    color: #C7D2FE;
+
+    background: rgba(99, 102, 241, 0.15);
+
+    border-color: rgba(129, 140, 248, 0.18);
+}
+
+
+body.dark .modal-content {
+    background:
+        linear-gradient(
+            145deg,
+            #0F172A,
+            #1E1B4B
+        );
+
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+
+body.dark .modal-content h2 {
+    color: white;
+}
+
+
+body.dark .modal-content p {
+    color: #CBD5E1;
+}
+
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media (max-width: 900px) {
+
+    .container {
+        width: 94%;
+
+        margin-top: 25px;
+    }
+
+
+    header {
+        padding: 22px 25px;
+    }
+
+
+    .logo h1 {
+        font-size: 29px;
+    }
+
+
+    .dashboard {
+        grid-template-columns:
+            repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+
+    #notesContainer {
+        grid-template-columns:
+            repeat(auto-fit, minmax(270px, 1fr));
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .container {
+        width: 93%;
+
+        margin-top: 18px;
+    }
+
+
+    header {
+        flex-direction: row;
+
+        padding: 18px;
+
+        border-radius: 20px;
+    }
+
+
+    .logo {
+        gap: 12px;
+    }
+
+
+    .logo i {
+        font-size: 34px;
+    }
+
+
+    .logo h1 {
+        font-size: 23px;
+    }
+
+
+    .logo p {
+        font-size: 11px;
+    }
+
+
+    #themeBtn {
+        width: 45px;
+        height: 45px;
+
+        flex-shrink: 0;
+
+        font-size: 17px;
+    }
+
+
+    .search-box {
+        padding: 15px 17px;
+    }
+
+
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+
+    .card {
+        padding: 23px;
+    }
+
+
+    .form-section {
+        padding: 24px 18px;
+
+        border-radius: 20px;
+    }
+
+
+    .form-section h2 {
+        font-size: 23px;
+    }
+
+
+    #notesContainer {
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+    }
+
+
+    .note-card {
+        min-height: auto;
+
+        padding: 23px 19px;
+    }
+
+
+    .note-card h3,
+    .note-card h2 {
+        font-size: 21px;
+    }
+
+
+    .buttons,
+    .btn-group {
+        flex-direction: column;
+    }
+
+
+    .editBtn,
+    .edit-btn,
+    .deleteBtn,
+    .delete-btn {
+        width: 100%;
+    }
+
+
+    .section-title h2,
+    .notes-heading {
+        font-size: 26px;
+    }
+
+
+    .modal-buttons {
+        flex-direction: column;
+    }
+
+
+    #toast {
+        top: 15px;
+
+        left: 15px;
+        right: 15px;
+
+        max-width: none;
+
+        text-align: center;
+    }
+
+
+    footer {
+        width: 93%;
+
+        font-size: 12px;
+    }
+
+}
+
+
+/* =========================
+   REDUCED MOTION SUPPORT
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        scroll-behavior: auto !important;
+
+        transition-duration: 0.01ms !important;
+    }
+
+}
+
+/* FINAL NOTES GRID FIX */
+
+#notesContainer {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    width: 100%;
+}
+
+.note-card {
+    width: 100%;
+    min-width: 0;
+}
+
+.buttons {
+    width: 100%;
+}
+
+.editBtn,
+.edit-btn,
+.deleteBtn,
+.delete-btn {
+    min-width: 0;
+}
